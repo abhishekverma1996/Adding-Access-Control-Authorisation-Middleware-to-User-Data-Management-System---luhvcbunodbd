@@ -13,7 +13,21 @@ Possible Cases:
 
 function grantAccessTo(roles) {
   return function (req, res, next) {
+    const token = req.headers.authorization;
+    if (!token) {
+      return res.status(401).json({ message: "Authentication failed: Missing token.", status: "Error" });
+    }
     //Write your code here;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await User.findById(decoded.sub);
+      if (!user) {
+        return res.status(401).json({ message: "Authentication failed: Invalid token.", status: "Error" });
+      }
+      req.user = user;
+      if (!roles.includes(user.role)) {
+        return res.status(403).json({ message: "Access Denied", status: "Error" });
+      }
+      next();
     try{
     } catch (err) {
       return res.status(401).json({ message: 'Authentication failed: Invalid token.', status: "Error" });
