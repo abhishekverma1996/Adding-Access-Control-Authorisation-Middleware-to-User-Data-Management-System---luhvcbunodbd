@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post("/signup", signup);
 router.post("/login", login);
-router.get('/decode', decodeToken)
+router.get('/decode', decodeToken);
 router.get('/api/v1/users/', grantAccessTo(['user', 'admin', 'superadmin']), getAllUsers);
 router.get('/api/v1/users/:id', grantAccessTo(['user', 'admin', 'superadmin']), getUserByID);
 router.post('/api/v1/users/', grantAccessTo(['guest', 'user', 'admin', 'superadmin']), createUser);
