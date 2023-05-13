@@ -36,5 +36,5 @@ function grantAccessTo(roles) {
   }
 }
 
-module.exports = grantAccessTo;
+module.exports = {grantAccessTo};
 
