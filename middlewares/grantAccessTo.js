@@ -12,7 +12,7 @@ Possible Cases:
 */
 
 function grantAccessTo(roles) {
-  return function (req, res, next) {
+  return async function (req, res, next) {
     const token = req.headers.authorization;
     if (!token) {
       return res.status(401).json({ message: "Authentication failed: Missing token.", status: "Error" });
