@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const JWT_SECRET = 'newtonSchool';
+const User = require('../models/User');
 
 /*
 Write a middleware function that checks if the user's role matches with the one given passed in the middleware as an array of roles. The token should be passed in the authorization header, the middle should return a 403 status code if the user's role is not present in the roles array and a 401 status code if the token is invalid or missing.
